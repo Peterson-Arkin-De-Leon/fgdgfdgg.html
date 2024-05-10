@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button Styles</title>
+<style>
+  body {
+    background-image: url('your-background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; 
+  }
+
+ 
+  .button {
+    display: block;
+    width: 200px;
+    padding: 20px; 
+    margin: 10px;
+    border: none; 
+    border-radius: 50px; 
+    text-align: center;
+    cursor: pointer;
+    color: white;
+  }
+  .subscribe-button {
+    background-color: darkred;
+  }
+
+  .order1-button {
+    background-color: darkgoldenrod;
+  }
+  .order2-button {
+    background-color: darkgreen;
+  }
+  .login-button {
+    background-color: darkblue;
+  }
+
+  .signup-button {
+    background-color: darkviolet;
+  }
+
+  .clicked {
+    background-color: lightgrey !important;
+  }
+</style>
+</head>
+<body>
+  <button class="button subscribe-button" onclick="toggleButton(this)">Subscribe</button>
+  <button class="button order1-button" onclick="toggleButton(this)">Add To Cart</button>
+  <button class="button order2-button" onclick="toggleButton(this)">Order Now</button>
+  <button class="button login-button" onclick="toggleButton(this)">Log In</button>
+  <button class="button signup-button" onclick="toggleButton(this)">Sign Up</button>
+
+  <script>
+    function toggleButton(button) {
+      button.classList.toggle('clicked');
+      checkDone();
+    }
+
+    function checkDone() {
+      var buttons = document.querySelectorAll('.button:not(.clicked)');
+      if (buttons.length === 0) {
+        setTimeout(function() {
+          var answer = confirm("Do you want to press buttons again?");
+          if (answer) {
+            window.location.reload(); 
+          } else {
+            alert("Haha! You can only choose Yes.");
+            setTimeout(checkDone, 0000); 
+          }
+        }, 0000);  
+      }
+    }
+  </script>
+</body>
+</html>
